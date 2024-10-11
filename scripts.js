@@ -4,7 +4,7 @@
     [x] Pegar os dados do Input, quando o botão for clicado.
     [x] Ir até o servido, e trazer os produtos.
     [] Colocar os Produtos na Tela.
-    [] Criar o gráfico de Preços. 
+    [] Criar o gráfico de Preços.
 */
 
 // PEGANDO OS DADOS DO INPUT E INDO TRAZENDO OS PRUDUTOS DO SERVIDOR
@@ -27,17 +27,21 @@ searchForm.addEventListener("submit", async function (event) {
 // COLOCANDO A IMAGENS DOS PRODUTOS
 
 function displayItems(products) {
-  productList.innerHTML = products.map(
-    (product) => `
+  productList.innerHTML = products
+    .map(
+      (product) => `
         <div class="product-card">
-            <img src="${product.thumbnail}" alt="${product.title}">
+            <img src="${product.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}" alt="${product.title}">
             <h3>${product.title}</h3>
-            <p>${product.price.toLocaleString("pt-br", {
+            <p class="product-price">${product.price.toLocaleString("pt-br", {
               style: "currency",
               currency: "BRL",
             })}</p>
-            <p>Loja: ${product.seller.nickname}</p>
+            <p class="product-store">Loja: ${product.seller.nickname}</p>
         </div>
     `
-  );
+    )
+    .join("");
 }
+
+//REGEX -> Regular Expressions / Expressões Regulares
